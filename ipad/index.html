@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conexão</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background: url(img/bg.jpg) no-repeat;
+		}
+
+		#container {
+			text-align: center;
+			font-family: Courier, Arial;
+			color: #FFF;
+			font-size: 60px;
+			margin-top: 250px;
+		}
+
+		.on, .off {
+			padding: 0 15px;
+		}
+
+		.on {
+			background-color: #93b34c;
+		}
+
+		.off {
+			background-color: #c93935;
+		}
+
+		#alert {
+			width: 700px;
+			height: 110px;
+			position: absolute;
+			margin: 285px 0 0 175px;
+			text-align: center;
+			font-family: Courier, Arial;
+			color: #FFF;
+			font-size: 30px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="alert"></div>
+
+	<div id="container">
+		O tablet está <span id="conexao">[verificando...]</span>.
+	</div>
+
+	<script type="text/javascript" src="scripts/tabletlab.js"></script>
+	<script type="text/javascript">
+		if (TL.sysInfo().appleDevice) {
+			var conexao = document.getElementById('conexao');
+			function checkConectivity() {
+				if (navigator.onLine) {
+					conexao.innerHTML = "<strong class='on'>online</strong>";
+				} else {
+					conexao.innerHTML = "<strong class='off'>offline</strong>";
+				}
+			}
+			checkConectivity();
+		} else {
+			var alert = document.getElementById('alert');
+			var container = document.getElementById('container');
+
+			container.style.display = 'none';
+			alert.innerHTML = 'Este recurso não está disponível para esta plataforma em tablets Android.';
+			alert.style.display = 'block';
+		}
+	</script>
+</body>
+</html>
